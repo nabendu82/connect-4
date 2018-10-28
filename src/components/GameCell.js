@@ -4,10 +4,8 @@ import { connect } from 'react-redux';
 class GameCell extends Component {
 
     render() {
-        //console.log(`this.props.playingBoard`, this.props.playingBoard);
         const { playingBoard, row, col } = this.props;
         let class__style = "cell__style";
-        // console.log(`row is ${row} col is ${col} - ${playingBoard[row][col]}`);
 
         if(playingBoard[row][col] !== undefined) {
             if (playingBoard[row][col] === 'red'){
@@ -17,11 +15,11 @@ class GameCell extends Component {
             }     
           
         }
-        console.log(class__style);
 
         return (
             <Fragment>
-                <div className={class__style}>{this.props.row}, {this.props.col}</div>
+                {/* <div className={class__style}>{this.props.row}, {this.props.col}</div> */}
+                <div className={class__style}></div>
             </Fragment>
         );
     }
