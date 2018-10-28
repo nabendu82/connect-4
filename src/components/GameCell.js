@@ -7,7 +7,7 @@ class GameCell extends Component {
         //console.log(`this.props.playingBoard`, this.props.playingBoard);
         const { playingBoard, row, col } = this.props;
         let class__style = "cell__style";
-        console.log(`row is ${row} col is ${col} - ${playingBoard[row][col]}`);
+        // console.log(`row is ${row} col is ${col} - ${playingBoard[row][col]}`);
 
         if(playingBoard[row][col] !== undefined) {
             if (playingBoard[row][col] === 'red'){

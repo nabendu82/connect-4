@@ -24,13 +24,82 @@ class Connect4Game extends Component {
         return items;
     }
 
-    showCurrentPlayer() {
-        if(this.props.currentPlayer) {
-            return <div className="curr__style">Current Player: {this.props.currentPlayer}</div>
-        } else {
-            return <div className="curr__style">Current Player: Red</div>
+    checkForWinning() {
+        const { playingBoard, currentPlayer } = this.props;
+        if (playingBoard) {
+            //CHecking top to bottom for win
+            for (let i = 0; i < 6; i++) {
+                for (let j = 0; j < 7; j++) {
+
+                    if (playingBoard[i][j] === 'red' && playingBoard[i][j + 1] === 'red' && playingBoard[i][j + 2] === 'red' && playingBoard[i][j + 3] === 'red') {
+                        return "red";
+                    }
+                    if (playingBoard[i][j] === 'yellow' && playingBoard[i][j + 1] === 'yellow' && playingBoard[i][j + 2] === 'yellow' && playingBoard[i][j + 3] === 'yellow') {
+                        return "yellow";
+                    }
+
+                }
+            }
+
+            //CHecking left to for win
+            for (let i = 0; i < 6; i++) {
+                for (let j = 0; j < 7; j++) {
+                    if (playingBoard[i][j] === 'red' && playingBoard[i+1][j] === 'red' && playingBoard[i+2][j] === 'red' && playingBoard[i+3][j] === 'red') {
+                        return "red";
+                    }
+                    if (playingBoard[i][j] === 'yellow' && playingBoard[i+1][j] === 'yellow' && playingBoard[i+2][j] === 'yellow' && playingBoard[i+3][j] === 'yellow') {
+                        return "yellow";
+                    }
+
+                }
+            }
+
+            //CHecking up diagnolly for win(/)
+            for (let i = 0; i < 6; i++) {
+                for (let j = 0; j < 7; j++) {
+                    if (playingBoard[i][j] === 'red' && playingBoard[i+1][j+1] === 'red' && playingBoard[i+2][j+2] === 'red' && playingBoard[i+3][j+3] === 'red') {
+                        return "red";
+                    }
+                    if (playingBoard[i][j] === 'yellow' && playingBoard[i+1][j+1] === 'yellow' && playingBoard[i+2][j+2] === 'yellow' && playingBoard[i+3][j+3] === 'yellow') {
+                        return "yellow";
+                    }
+
+                }
+            }
+
+            //CHecking down diagnolly for win(\)
+            for (let i = 0; i < 6; i++) {
+                for (let j = 0; j < 7; j++) {
+                    if (playingBoard[i][j] === 'red' && playingBoard[i + 1][j - 1] === 'red' && playingBoard[i + 2][j - 2] === 'red' && playingBoard[i + 3][j - 3] === 'red') {
+                        return "red";
+                    }
+                    if (playingBoard[i][j] === 'yellow' && playingBoard[i + 1][j - 1] === 'yellow' && playingBoard[i + 2][j - 2] === 'yellow' && playingBoard[i + 3][j - 3] === 'yellow') {
+                        return "yellow";
+                    }
+
+                }
+            }
         }
+
+        return false;
     }
+
+    showCurrentPlayer() {
+        const winningCheck = this.checkForWinning();
+        console.log(`winningCheck `, winningCheck);
+        if(!winningCheck) {
+            if(this.props.currentPlayer) {
+                return <div className="curr__style">Current Player: {this.props.currentPlayer}</div>
+            } else {
+                return <div className="curr__style">Current Player: Red</div>
+            }
+        } else {
+            return <div className="curr__style">Player: {winningCheck} Wins</div>
+        }
+
+    }
+
+
 
 
     render() {

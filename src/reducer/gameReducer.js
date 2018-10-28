@@ -17,12 +17,12 @@ const initialState = {
     let newState;
     switch (action.type) {
       case types.COL_DATA:
-        console.log(`The value from reducer ${action.payload }`);
+        //console.log(`The value from reducer ${action.payload }`);
         const newCol = [...state.playingBoard[action.payload], state.currentPlayer];
         const newBoard = [...state.playingBoard];
         newBoard[action.payload] = newCol;
         newState = {...state, currentPlayer: state.currentPlayer === 'red' ? 'yellow' : 'red', playingBoard: newBoard};
-        console.log(`The newState from reducer ${JSON.stringify(newState)}`);
+        //console.log(`The newState from reducer ${JSON.stringify(newState)}`);
         break;
       default:
         newState = state;
